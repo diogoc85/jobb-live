@@ -1,0 +1,11 @@
+{
+  "primaryColor": "#29ffdb",
+  "secondaryColor": "#548356",
+  "foregroundColor": "#f0fbe9",
+  "backgroundColor": "#3d5561",
+  "titleFont": "Golos",
+  "bodyFont": "Inter",
+  "logoLight": "",
+  "logoDark": "",
+  "favicon": "/favicon.ico"
+}

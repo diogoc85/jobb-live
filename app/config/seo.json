@@ -1,0 +1,17 @@
+{
+  "/": {
+    "title": "Home Teste",
+    "description": "Descrição do site fica aqui",
+    "keywords": []
+  },
+  "/sobre": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/links": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  }
+}
