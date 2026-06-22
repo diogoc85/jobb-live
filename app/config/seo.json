@@ -1,10 +1,45 @@
 {
   "/": {
-    "title": "Home Teste",
+    "title": "Home - Jobb Live - Software de gestão para agência de marketing.",
     "description": "Descrição do site fica aqui",
     "keywords": []
   },
+  "/ajuda": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/blog": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/duvidas": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/funcionalidades": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/planos": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/politica-de-privacidade": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
   "/sobre": {
+    "title": "",
+    "description": "",
+    "keywords": []
+  },
+  "/termos-de-uso": {
     "title": "",
     "description": "",
     "keywords": []

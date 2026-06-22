@@ -67,6 +67,7 @@ The goal is to create premium, scalable, accessible and high-converting websites
 
 ## O QUE FAZER
 
+- Sempre que criar uma nova section verifique a pasta assets/img para pegar as imagens usadas na section.
 - Sempre use a biblioteca de icones da Phosphor icons.
 - Sempre use o nome da imagem no alt.
 - Sempre adicione a classe "text-pretty" nos títulos e paragrafos para evitar os textos com viuvas.

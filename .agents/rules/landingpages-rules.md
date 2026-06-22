@@ -2,13 +2,10 @@
 trigger: always_on
 ---
 
-
 ---
 
 # landing-page-rules.md
 
-```md id="2fj8rm"
-# High Conversion Landing Page Rules
 
 ## Objective
 
@@ -75,8 +72,3 @@ All visible above the fold.
 - Focus on transformation
 - Be easy to scan
 - Avoid generic buzzwords
-
-## Good Example
-
-```txt id="n4v7yd"
-Websites Built to Convert Visitors Into Clients

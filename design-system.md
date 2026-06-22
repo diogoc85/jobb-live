@@ -28,44 +28,73 @@ Este documento foi gerado automaticamente pelo Assistente de Setup para servir c
 
 ### 3.2 Cores de Marca
 
-#### Cor Primária: `#29ffdb` (Escala de tons ancorada no 500)
+#### Cor Primária: `#FD183F` (Escala de tons ancorada no 500)
 
 | Classe Tailwind | Hex | Uso sugerido |
 |---|---|---|
-| `bg-primary-50` / `text-primary-50` | `#f0fffc` | Fundos levíssimos, hover states sutis |
-| `bg-primary-100` | `#d8fff9` | Fills de badges, highlights |
-| `bg-primary-200` | `#b4fff2` | Estados desabilitados com tom de marca |
-| `bg-primary-300` | `#89ffeb` | Ícones secundários, bordas suaves |
-| `bg-primary-400` | `#54ffe2` | Hover de botão primário |
-| **`bg-primary-500`** | **`#29ffdb`** | **COR PRINCIPAL — botões, links, destaques** |
-| `bg-primary-600` | `#23d9ba` | Active/pressed de botão primário |
-| `bg-primary-700` | `#1db399` | Texto de erro em fundos claros |
-| `bg-primary-800` | `#158572` | Texto sobre fundo primary-100/200 |
-| `bg-primary-900` | `#0e594d` | Texto de alta ênfase em contexto de marca |
+| `bg-primary-50` / `text-primary-50` | `#ffeff2` | Fundos levíssimos, hover states sutis |
+| `bg-primary-100` | `#ffd5dc` | Fills de badges, highlights |
+| `bg-primary-200` | `#feaebc` | Estados desabilitados com tom de marca |
+| `bg-primary-300` | `#fe8095` | Ícones secundários, bordas suaves |
+| `bg-primary-400` | `#fd4665` | Hover de botão primário |
+| **`bg-primary-500`** | **`#fd183f`** | **COR PRINCIPAL — botões, links, destaques** |
+| `bg-primary-600` | `#d71436` | Active/pressed de botão primário |
+| `bg-primary-700` | `#b1112c` | Texto de erro em fundos claros |
+| `bg-primary-800` | `#840c21` | Texto sobre fundo primary-100/200 |
+| `bg-primary-900` | `#590816` | Texto de alta ênfase em contexto de marca |
 
-#### Cor Secundária: `#548356` (Escala de tons ancorada no 500)
+#### Cor Secundária: `#262626` (Escala de tons ancorada no 500)
 
 | Classe Tailwind | Hex | Uso sugerido |
 |---|---|---|
-| `bg-secondary-50` / `text-secondary-50` | `#f3f6f3` | Fundos levíssimos, hover states sutis |
-| `bg-secondary-100` | `#e0e9e1` | Fills de badges, highlights |
-| `bg-secondary-200` | `#c3d4c4` | Estados desabilitados com tom de marca |
-| `bg-secondary-300` | `#a1bba2` | Ícones secundários, bordas suaves |
-| `bg-secondary-400` | `#769c78` | Hover de botão secundário |
-| **`bg-secondary-500`** | **`#548356`** | **COR SECUNDÁRIA — destaques, badges, estados** |
-| `bg-secondary-600` | `#476f49` | Active/pressed de botão secundário |
-| `bg-secondary-700` | `#3b5c3c` | Texto em fundos claros |
-| `bg-secondary-800` | `#2c442d` | Texto sobre fundo secondary-100/200 |
-| `bg-secondary-900` | `#1d2e1e` | Texto de alta ênfase em contexto secundário |
+| `bg-secondary-50` / `text-secondary-50` | `#f0f0f0` | Fundos levíssimos, hover states sutis |
+| `bg-secondary-100` | `#d8d8d8` | Fills de badges, highlights |
+| `bg-secondary-200` | `#b3b3b3` | Estados desabilitados com tom de marca |
+| `bg-secondary-300` | `#888888` | Ícones secundários, bordas suaves |
+| `bg-secondary-400` | `#515151` | Hover de botão secundário |
+| **`bg-secondary-500`** | **`#262626`** | **COR SECUNDÁRIA — destaques, badges, estados** |
+| `bg-secondary-600` | `#202020` | Active/pressed de botão secundário |
+| `bg-secondary-700` | `#1b1b1b` | Texto em fundos claros |
+| `bg-secondary-800` | `#141414` | Texto sobre fundo secondary-100/200 |
+| `bg-secondary-900` | `#0d0d0d` | Texto de alta ênfase em contexto secundário |
 
 #### Outras Cores
-- **Foreground (Texto)**: `#f0fbe9` (Uso com Tailwind: `text-foreground`)
-- **Background (Fundo)**: `#3d5561` (Uso com Tailwind: `bg-background`)
+- **Foreground (Texto)**: `#262626` (Uso com Tailwind: `text-foreground`)
+- **Background (Fundo)**: `#e6e6e6` (Uso com Tailwind: `bg-background`)
 
 ### 3.3 Tipografia (Carregada via Google Fonts no layout.tsx)
-- **Títulos (H1, H2, H3, etc.)**: Font Family `"Golos"` (Mapeada para a classe Tailwind `font-display`)
-- **Corpo e Parágrafos**: Font Family `"Inter"` (Mapeada para a classe Tailwind `font-sans`)
+- **Títulos (H1, H2, H3, etc.)**: Font Family `"Instrument Sans"` (Mapeada para a classe Tailwind `font-display`)
+- **Corpo e Parágrafos**: Font Family `"Instrument Sans"` (Mapeada para a classe Tailwind `font-sans`)
+- **Sofia Sans Extra Condensed**: Usada para destaques numéricos ou numerações de passos (Mapeada para a classe Tailwind `font-sofia-condensed`)
 - **Peso de Fontes (Regra Estrita)**: Links, menus de navegação e botões usam sempre o peso **regular** (`font-normal` / 400). Nunca devem usar negrito (bold ou semibold).
+
+### 3.4 Tokens Semânticos
+
+Abaixo estão definidos os tokens semânticos globais para backgrounds, superfícies, bordas, textos, ícones e estados, mapeados a partir de cores neutras:
+
+| Categoria | Variável CSS / Classe Tailwind | Valor de Referência | Uso Sugerido |
+|---|---|---|---|
+| **Backgrounds** | `--color-bg-primary` / `bg-bg-primary` | `var(--color-neutral-50)` | Fundo padrão do site / corpo principal. |
+| | `--color-bg-secondary` / `bg-bg-secondary` | `var(--color-neutral-100)` | Seções alternadas ou áreas secundárias. |
+| | `--color-bg-tertiary` / `bg-bg-tertiary` | `var(--color-neutral-200)` | Áreas de destaque de fundo/cards em seções. |
+| | `--color-bg-inverse` / `bg-bg-inverse` | `var(--color-neutral-900)` | Fundos invertidos (modo escuro local ou contrastantes). |
+| **Surface** | `--color-surface-primary` / `bg-surface-primary` | `var(--color-neutral-50)` | Fundo primário de cartões (cards) ou painéis. |
+| | `--color-surface-secondary` / `bg-surface-secondary` | `var(--color-neutral-100)` | Fundo secundário de cartões ou subcomponentes. |
+| | `--color-surface-tertiary` / `bg-surface-tertiary` | `var(--color-neutral-200)` | Elementos de profundidade ou encaixe. |
+| **Borders** | `--color-border-subtle` / `border-border-subtle` | `var(--color-neutral-200)` | Divisores sutis, linhas e tabelas delicadas. |
+| | `--color-border-default` / `border-border-default` | `var(--color-neutral-300)` | Borda padrão para inputs, formulários e cards. |
+| | `--color-border-strong` / `border-border-strong` | `var(--color-neutral-400)` | Borda mais pronunciada (ex: foco, hover de borda). |
+| **Text** | `--color-text-primary` / `text-text-primary` | `var(--color-neutral-900)` | Texto padrão de títulos e leitura principal. |
+| | `--color-text-secondary` / `text-text-secondary` | `var(--color-neutral-700)` | Descrições secundárias, parágrafos comuns. |
+| | `--color-text-tertiary` / `text-text-tertiary` | `var(--color-neutral-500)` | Metadados, legendas e textos de suporte. |
+| | `--color-text-disabled` / `text-text-disabled` | `var(--color-neutral-400)` | Texto em elementos desabilitados. |
+| | `--color-text-inverse` / `text-text-inverse` | `var(--color-neutral-50)` | Texto claro sobre fundos escuros. |
+| **Icons** | `--color-icon-primary` / `text-icon-primary` | `var(--color-neutral-900)` | Cor padrão para ícones de interface. |
+| | `--color-icon-secondary` / `text-icon-secondary` | `var(--color-neutral-600)` | Ícones secundários ou decorativos. |
+| | `--color-icon-disabled` / `text-icon-disabled` | `var(--color-neutral-400)` | Ícones em estado desabilitado. |
+| **States** | `--color-disabled-bg` / `bg-disabled-bg` | `var(--color-neutral-100)` | Fundo de botões/inputs desativados. |
+| | `--color-disabled-text` / `text-disabled-text` | `var(--color-neutral-400)` | Texto de botões/inputs desativados. |
+| **Overlay** | `--color-overlay` / `bg-overlay` | `rgb(23 23 23 / 0.6)` | Fundos escurecidos de modais, overlays e drawers. |
 
 ---
 
@@ -105,10 +134,6 @@ Todos os espaçamentos no globals.css e no design system do site utilizam a esca
 * **Navegação**: `.link-nav` (Tom cinza/texto padrão, muda para primário no hover).
 * **Navegação Ativo**: `.link-nav-active` (Cor primária).
 * **CTA Textual**: `.link-cta` (Formatado exatamente igual a `.link-nav`, conforme convenção do layout).
-
-### 5.4 Classes e Padrão de Ícones
-* **Ícones de Contato/Informação**: `.contact-icon` (Aplica a cor primária `var(--color-primary-500)`).
-* **Regra de Consistência**: Todos os ícones em blocos informativos de contato (como WhatsApp, E-mail, Telefone, Endereço) devem utilizar obrigatoriamente a classe `.contact-icon` (ou o utilitário `text-primary`) para garantir a consistência cromática, sendo vedado o uso de cores mistas ou diferentes (como usar `text-secondary` para e-mail e `text-primary` para WhatsApp).
 
 ---
 

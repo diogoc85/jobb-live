@@ -149,29 +149,13 @@ export default function LinksPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col items-center py-12 px-6 relative overflow-hidden">
-      {/* Estilos para animações inline em Pure CSS (Server Component Friendly) */}
-      <style>{`
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(16px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        .animate-fade-up {
-          animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          opacity: 0;
-        }
-      `}</style>
+
 
       {/* Conteúdo centralizado */}
       <main className="w-full max-w-md flex-1 flex flex-col items-center z-10">
         
         {/* Bloco do Topo: Logotipo e Bio */}
-        <header className="text-center mb-8 animate-fade-up" style={{ animationDelay: "0ms" }}>
+        <header className="text-center mb-8 animate-fade-up">
           {themeData.logoLight ? (
             <div className="flex justify-center mb-4">
               <Image
@@ -180,7 +164,6 @@ export default function LinksPage() {
                 width={160}
                 height={64}
                 className="h-16 w-auto object-contain"
-                style={{ height: 'auto' }}
                 priority
                 unoptimized
               />
@@ -199,7 +182,7 @@ export default function LinksPage() {
         {/* Lista de Botões/Links (Staggered Animation) */}
         <div className="w-full flex flex-col gap-3">
           {activeLinks.map((link, index) => {
-            const delay = `${(index + 1) * 75}ms`;
+            const delayClass = `delay-${Math.min(index + 1, 5)}`;
             
             if (link.isPrimary) {
               return (
@@ -208,8 +191,7 @@ export default function LinksPage() {
                   href={link.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary btn-lg w-full flex items-center justify-center gap-2 animate-fade-up text-center font-normal"
-                  style={{ animationDelay: delay }}
+                  className={`btn-primary btn-lg w-full flex items-center justify-center gap-2 animate-fade-up text-center font-normal ${delayClass}`}
                   id={`link-${link.id}`}
                 >
                   {link.icon}
@@ -221,8 +203,7 @@ export default function LinksPage() {
             // Para links internos como "/", usamos a tag Link do Next.js
             const isInternal = link.url.startsWith("/");
             const linkProps = {
-              className: "btn-ghost btn-lg w-full flex items-center justify-center gap-2 animate-fade-up text-center font-normal",
-              style: { animationDelay: delay },
+              className: `btn-ghost btn-lg w-full flex items-center justify-center gap-2 animate-fade-up text-center font-normal ${delayClass}`,
               id: `link-${link.id}`,
             };
 
@@ -257,8 +238,7 @@ export default function LinksPage() {
         {/* Bloco de Endereço Físico (Puxado do setup) */}
         {contactsData.address && (
           <div
-            className="w-full mt-10 p-4 rounded-lg bg-surface border border-base flex flex-col items-center text-center animate-fade-up"
-            style={{ animationDelay: `${(activeLinks.length + 1) * 75}ms` }}
+            className="w-full mt-10 p-4 rounded-lg bg-surface border border-base flex flex-col items-center text-center animate-fade-up delay-5"
           >
             <span className="contact-icon mb-2">
               <MapPinIcon />
@@ -285,8 +265,7 @@ export default function LinksPage() {
 
       {/* Footer Minimalista */}
       <footer
-        className="w-full text-center mt-12 py-4 border-t border-foreground/10 text-caption animate-fade-up"
-        style={{ animationDelay: `${(activeLinks.length + 2) * 75}ms` }}
+        className="w-full text-center mt-12 py-4 border-t border-foreground/10 text-caption animate-fade-up delay-5"
       >
         <p className="text-caption text-foreground/60 text-pretty">
           &copy; {new Date().getFullYear()} {brandName}. Todos os direitos reservados.

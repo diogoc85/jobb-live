@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const { exec } = require('child_process');
 
-const PORT = 3030;
+let PORT = 3030;
 
 // Caminhos dos arquivos de configuração
 const ENV_PATH = path.resolve(process.cwd(), '.env');
@@ -1884,13 +1884,33 @@ const server = http.createServer((req, res) => {
                     try {
                         const matches = theme.faviconBase64.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/);
                         if (matches && matches.length === 3) {
+                            const mimeType = matches[1];
+                            let filename = 'favicon.ico';
+                            
+                            if (mimeType === 'image/svg+xml') {
+                                filename = 'icon.svg';
+                            } else if (mimeType === 'image/png') {
+                                filename = 'icon.png';
+                            } else if (mimeType === 'image/jpeg') {
+                                filename = 'icon.jpg';
+                            }
+
+                            // Limpar ícones antigos para evitar conflitos no Next.js
+                            const possibleIcons = ['favicon.ico', 'icon.png', 'icon.svg', 'icon.jpg'];
+                            possibleIcons.forEach(icon => {
+                                const oldPath = path.resolve(process.cwd(), `app/${icon}`);
+                                if (fs.existsSync(oldPath)) {
+                                    fs.unlinkSync(oldPath);
+                                }
+                            });
+
                             const fileBuffer = Buffer.from(matches[2], 'base64');
-                            const targetPath = path.resolve(process.cwd(), 'app/favicon.ico');
+                            const targetPath = path.resolve(process.cwd(), `app/${filename}`);
                             fs.writeFileSync(targetPath, fileBuffer);
-                            theme.favicon = '/favicon.ico';
+                            theme.favicon = `/${filename}`;
                         }
                     } catch (e) {
-                        console.error('Erro ao salvar favicon em app/favicon.ico:', e);
+                        console.error('Erro ao salvar favicon:', e);
                     }
                 }
 
@@ -1947,8 +1967,8 @@ const server = http.createServer((req, res) => {
     }
 });
 
-// Inicializar Servidor
-server.listen(PORT, () => {
+// Inicializar Servidor de forma resiliente a conflitos de porta
+server.once('listening', () => {
     const url = `http://localhost:${PORT}`;
     console.log(`\n==================================================`);
     console.log(`🚀 Assistente de Setup iniciado na porta ${PORT}`);
@@ -1971,3 +1991,15 @@ server.listen(PORT, () => {
         }
     });
 });
+
+server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE') {
+        console.log(`Porta ${PORT} já está em uso. Tentando a porta ${PORT + 1}...`);
+        PORT++;
+        server.listen(PORT);
+    } else {
+        console.error('Erro no servidor:', err);
+    }
+});
+
+server.listen(PORT);

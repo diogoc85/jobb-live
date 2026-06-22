@@ -47,9 +47,9 @@ Always prioritize:
 
 Use a centralized responsive container.
 
-```tsx id="s4v9qk"
+
 <div className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8">
-```
+
 
 ---
 
@@ -59,7 +59,7 @@ Tailwind CSS v4 não utiliza o arquivo `tailwind.config.js`. Todo o tema e token
 
 ### 1. Definindo Cores e Customizações do Tema
 
-Para adicionar novas cores de marca ou tokens customizados, edite o [globals.css](file:///c:/Users/Diogo/Documents/AI/modelo/modelo/app/globals.css) usando a diretiva `@theme`:
+Para adicionar novas cores de marca ou tokens customizados, edite o [globals.css] usando a diretiva `@theme`:
 
 ```css
 @import "tailwindcss";
@@ -75,5 +75,7 @@ Para adicionar novas cores de marca ou tokens customizados, edite o [globals.css
 ```
 
 ### 2. Evite Estilos inline e HEX Hardcoded
-- Não use cores HEX nos arquivos TSX (ex: `bg-[#ff0000]`). Sempre defina a cor no `@theme` em [globals.css](file:///c:/Users/Diogo/Documents/AI/modelo/modelo/app/globals.css) e use a classe utilitária do Tailwind (ex: `bg-primary-500`).
+- Nunca use mix-blens-overlay nas imagens.
+- Não use style interno, sempre externo.
+- Não use cores HEX nos arquivos TSX (ex: `bg-[#ff0000]`). Sempre defina a cor no `@theme` em [globals.css] e use a classe utilitária do Tailwind (ex: `bg-primary-500`).
 - Utilize espaçamentos padrão do Tailwind (`p-4`, `m-6`, `gap-8`) para manter o ritmo vertical consistente.

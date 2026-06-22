@@ -1,11 +1,11 @@
 {
-  "primaryColor": "#29ffdb",
-  "secondaryColor": "#548356",
-  "foregroundColor": "#f0fbe9",
-  "backgroundColor": "#3d5561",
-  "titleFont": "Golos",
-  "bodyFont": "Inter",
-  "logoLight": "",
-  "logoDark": "",
-  "favicon": "/favicon.ico"
+  "primaryColor": "#FD183F",
+  "secondaryColor": "#262626",
+  "foregroundColor": "#262626",
+  "backgroundColor": "#e6e6e6",
+  "titleFont": "Instrument Sans",
+  "bodyFont": "Instrument Sans",
+  "logoLight": "/assets/img/logotipo-jobblive-light.svg",
+  "logoDark": "/assets/img/logotipo-jobblive-dark.svg",
+  "favicon": "/icon.svg"
 }
