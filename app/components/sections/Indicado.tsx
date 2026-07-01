@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import contactsData from "../../config/contacts.json";
 
 // Ícones SVG do Phosphor Icons (Regular weight)
@@ -55,34 +56,42 @@ export default function Indicado() {
     {
       title: "Agência de marketing",
       icon: <TargetIcon />,
+      slug: "agencia-de-marketing",
     },
     {
       title: "Agência de live marketing",
       icon: <EyeIcon />,
+      slug: "agencia-de-live-marketing",
     },
     {
       title: "Agências de publicidade",
       icon: <MegaphoneIcon />,
+      slug: "agencia-de-publicidade",
     },
     {
       title: "Agências de conteúdo digital",
       icon: <MonitorPlayIcon />,
+      slug: "agencia-de-conteudo-digital",
     },
     {
       title: "Agências de ativações de marca",
       icon: <StorefrontIcon />,
+      slug: "agencia-de-ativacao-de-marca",
     },
     {
       title: "Agências de trade marketing",
       icon: <ChartBarIcon />,
+      slug: "agencia-de-trade-marketing",
     },
     {
       title: "Organizadores de feiras e congressos",
       icon: <PresentationIcon />,
+      slug: "organizador-de-feiras-e-congressos",
     },
     {
       title: "Organizadores de festivais e shows",
       icon: <TicketIcon />,
+      slug: "organizador-de-festivais-e-shows",
     },
   ];
 
@@ -107,11 +116,12 @@ export default function Indicado() {
         {/* Grid de Cards Vermelhos Sem Arredondamento */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {targetCards.map((card, index) => {
-            const delayClass = `delay-${(index % 4) + 1}`;
             return (
-              <div
+              <Link
+                href={`/segmentos/${card.slug}`}
                 key={index}
-                className={`flex flex-col items-center justify-center bg-primary-500 text-white py-12 px-6 rounded-none transition-all hover:bg-primary-600 duration-200 animate-fade-up ${delayClass}`}
+                className="flex flex-col items-center justify-center bg-primary-500 text-white py-12 px-6 rounded-none transition-all hover:bg-primary-600 duration-200 animate-fade-up cursor-pointer"
+                style={{ animationDelay: `${(index % 4) * 100}ms` }}
               >
                 {/* Ícone */}
                 <div className="mb-4 text-white">
@@ -122,7 +132,7 @@ export default function Indicado() {
                 <span className="text-center text-heading-6 font-normal tracking-tight text-white text-pretty max-w-[200px]">
                   {card.title}
                 </span>
-              </div>
+              </Link>
             );
           })}
         </div>

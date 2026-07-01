@@ -10,6 +10,7 @@ interface StorytellingItem {
   title: string;
   description: string;
   image: string;
+  icons: string[];
 }
 
 const storytellingItems: StorytellingItem[] = [
@@ -18,35 +19,40 @@ const storytellingItems: StorytellingItem[] = [
     label: "Conciliação bancária inteligente por arquivo Ofx",
     title: "Conciliação bancária inteligente por arquivo Ofx",
     description: "Tenha praticidade e economize tempo com nossa solução de conciliação bancária. Simplificamos o processo para que você gerencie suas finanças com facilidade, reduzindo tarefas manuais e ganhando mais eficiência diariamente.",
-    image: "/assets/img/conciliacao-bancaria.jpg"
+    image: "/assets/img/conciliacao-bancaria.jpg",
+    icons: ["/assets/icons/icon-ofx.svg"]
   },
   {
     id: 1,
     label: "Emissão de nota fiscal eletrônica",
     title: "Emissão de nota fiscal eletrônica",
     description: "A emissão de nota fiscal eletrônica integrada ao sistema financeiro traz mais agilidade e eficiência operacional. Automatize processos, elimine digitações manuais e garanta mais segurança nas transações comerciais diariamente.",
-    image: "/assets/img/notas-fiscais.jpg"
+    image: "/assets/img/notas-fiscais.jpg",
+    icons: ["/assets/icons/icon-nfs-e.svg"]
   },
   {
     id: 2,
     label: "Envio de cadastro de fornecedores por link",
     title: "Envio de cadastro de fornecedores por link",
     description: "Agora seu fornecedor pode atualizar os próprios dados com facilidade e rapidez diretamente pelo sistema. Todas as informações ficam salvas automaticamente em apenas um clique, reduzindo erros operacionais internos.",
-    image: "/assets/img/fornecedores-link.jpg"
+    image: "/assets/img/fornecedores-link.jpg",
+    icons: ["/assets/icons/icon-link.svg"]
   },
   {
     id: 3,
     label: "Geração de contrato em PDF",
     title: "Geração de contrato em PDF",
     description: "Crie contratos em PDF e tenha flexibilidade para cadastrar diferentes modelos diretamente em nosso sistema. Personalize, organize e envie contratos para clientes ou fornecedores com mais praticidade diariamente.",
-    image: "/assets/img/contratos-pdf.jpg"
+    image: "/assets/img/contratos-pdf.jpg",
+    icons: ["/assets/icons/icon-pdf.svg"]
   },
   {
     id: 4,
     label: "Integração com a D4sign e Docusign",
     title: "Integração com a D4sign e Docusign. Tenha a praticidade da assinatura digital.",
     description: "Além de gerar contratos em PDF de maneira prática e automatizada, agora você também pode enviá-los online. Permita que clientes e fornecedores assinem documentos digitalmente com rapidez, segurança e praticidade.",
-    image: "/assets/img/integracao-d4sign-docusign.jpg"
+    image: "/assets/img/integracao-d4sign-docusign.jpg",
+    icons: ["/assets/icons/icon-d4sign.svg", "/assets/icons/icon-docusign.svg"]
   }
 ];
 
@@ -108,6 +114,71 @@ export default function GestaoAgil() {
     });
   };
 
+  const getCardStyles = (idx: number) => {
+    // Para telas menores, comportamento padrão (opacidade total do ativo, ocultar outros)
+    if (typeof window !== "undefined" && window.innerWidth < 1024) {
+      const isActive = activeIndex === idx;
+      return {
+        transform: "translateY(0px) scale(1)",
+        opacity: isActive ? 1 : 0,
+        zIndex: isActive ? 30 : 0,
+        pointerEvents: isActive ? ("auto" as const) : ("none" as const)
+      };
+    }
+
+    const diff = idx - activeIndex;
+
+    // Card Ativo (no topo do baralho)
+    if (diff === 0) {
+      return {
+        transform: "translateY(0px) scale(1)",
+        opacity: 1,
+        zIndex: 30,
+        pointerEvents: "auto" as const
+      };
+    }
+
+    // Cards Anteriores (retraídos e deslocados para trás/cima)
+    if (diff < 0) {
+      const stepsBack = Math.abs(diff);
+      if (stepsBack === 1) {
+        return {
+          transform: "translateY(-24px) scale(0.94)",
+          opacity: 0.6,
+          zIndex: 20,
+          pointerEvents: "none" as const
+        };
+      }
+      if (stepsBack === 2) {
+        return {
+          transform: "translateY(-48px) scale(0.88)",
+          opacity: 0.25,
+          zIndex: 10,
+          pointerEvents: "none" as const
+        };
+      }
+      // Outros anteriores ficam totalmente invisíveis
+      return {
+        transform: "translateY(-60px) scale(0.82)",
+        opacity: 0,
+        zIndex: 0,
+        pointerEvents: "none" as const
+      };
+    }
+
+    // Cards Futuros (aguardando para entrar, vindo de baixo)
+    if (diff > 0) {
+      return {
+        transform: "translateY(48px) scale(1.03)",
+        opacity: 0,
+        zIndex: 40 + idx,
+        pointerEvents: "none" as const
+      };
+    }
+
+    return {};
+  };
+
   return (
     <section
       ref={containerRef}
@@ -157,22 +228,20 @@ export default function GestaoAgil() {
               </ul>
             </div>
 
-            {/* Lado Direito: Preview do Sistema com Texto Sobreposto em proporção 3:4 */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end w-full">
-              <div className="relative w-full max-w-[480px] aspect-[3/4] overflow-hidden bg-neutral-900 rounded-none shadow-none border border-neutral-200">
+            {/* Lado Direito: Preview do Sistema com Efeito Pilha de Cartas de Baralho (3:4) */}
+            <div className="lg:col-span-5 flex justify-center lg:justify-end w-full relative pt-12 pb-4 lg:py-12">
+              <div className="relative w-full max-w-[480px] aspect-[3/4]">
+                {storytellingItems.map((item, idx) => {
+                  const cardStyle = getCardStyles(idx);
 
-                {/* Imagens de Fundo com Transição Suave */}
-                <div className="absolute inset-0 w-full h-full z-0">
-                  {storytellingItems.map((item, idx) => {
-                    const isActive = activeIndex === idx;
-                    return (
-                      <div
-                        key={item.id}
-                        className={`absolute inset-0 transition-all duration-500 ease-in-out ${isActive
-                          ? "opacity-100 scale-100"
-                          : "opacity-0 scale-95 pointer-events-none"
-                          }`}
-                      >
+                  return (
+                    <div
+                      key={item.id}
+                      style={cardStyle}
+                      className="absolute inset-0 w-full h-full overflow-hidden bg-neutral-900 rounded-none border border-neutral-200 transition-all duration-500 ease-out flex flex-col justify-end shadow-md"
+                    >
+                      {/* Imagem de Fundo do Card */}
+                      <div className="absolute inset-0 w-full h-full z-0">
                         <Image
                           src={item.image}
                           alt={item.title}
@@ -181,44 +250,47 @@ export default function GestaoAgil() {
                           unoptimized
                         />
                       </div>
-                    );
-                  })}
-                </div>
 
-                {/* Overlay de Gradiente Escuro para legibilidade do texto */}
-                <div
-                  className="absolute inset-0 z-10 pointer-events-none"
-                  style={{
-                    background: "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.1) 80%, transparent 100%)"
-                  }}
-                  aria-hidden="true"
-                />
-
-                {/* Textos Dinâmicos Sobrepostos */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-12 z-20 flex flex-col justify-end min-h-[40%] text-white">
-                  {storytellingItems.map((item, idx) => {
-                    const isActive = activeIndex === idx;
-                    return (
+                      {/* Overlay de Gradiente Escuro para legibilidade */}
                       <div
-                        key={item.id}
-                        className={`transition-all duration-500 ease-in-out ${isActive
-                          ? "block opacity-100 translate-y-0"
-                          : "hidden opacity-0 translate-y-4"
-                          }`}
-                      >
+                        className="absolute inset-0 z-10 pointer-events-none"
+                        style={{
+                          background: "linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 40%, rgba(0, 0, 0, 0.1) 80%, transparent 100%)"
+                        }}
+                        aria-hidden="true"
+                      />
+
+                      {/* Textos e Ícones do Card */}
+                      <div className="relative p-6 md:p-12 z-20 flex flex-col justify-end min-h-[40%] text-white">
+                        {/* Ícones da Funcionalidade */}
+                        <div className="flex items-center gap-3 mb-4">
+                          {item.icons.map((iconPath, iconIdx) => (
+                            <div key={iconIdx} className="relative w-14 h-14 shrink-0">
+                              <Image
+                                src={iconPath}
+                                alt={`Ícone ${item.title}`}
+                                fill
+                                className="object-contain"
+                                unoptimized
+                              />
+                            </div>
+                          ))}
+                        </div>
+
                         {/* Título */}
                         <h3 className="text-xl md:text-2xl font-display text-white font-normal mb-3 leading-tight text-pretty">
                           {item.title}
                         </h3>
+
                         {/* Parágrafo/Descrição */}
                         <p className="text-sm text-neutral-300 font-sans text-pretty leading-relaxed">
                           {item.description}
                         </p>
                       </div>
-                    );
-                  })}
-                </div>
 
+                    </div>
+                  );
+                })}
               </div>
             </div>
 

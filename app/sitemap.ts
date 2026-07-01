@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     
     // Obtém automaticamente todas as páginas físicas estáticas
     const staticPaths = getStaticRoutes(appDirectory)
-
+    
     // Mapeia os caminhos encontrados para o formato de Sitemap do Next.js
     const routes = staticPaths.map(routePath => ({
         url: `${baseUrl}${routePath === '/' ? '' : routePath}`,
@@ -59,16 +59,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: routePath === '/' ? 1.0 : 0.8,
     }))
 
-    // DICA: Para mesclar rotas dinâmicas vindas de um CMS ou Banco de Dados (ex: posts do blog),
-    // busque os dados e faça o merge aqui. Exemplo:
-    // const posts = await getPosts()
-    // const dynamicRoutes = posts.map(post => ({
-    //     url: `${baseUrl}/blog/${post.slug}`,
-    //     lastModified: new Date(post.updatedAt),
-    //     changeFrequency: 'weekly' as const,
-    //     priority: 0.7,
-    // }))
-    // return [...routes, ...dynamicRoutes]
+    // Adiciona as rotas estáticas de cada segmento atendido
+    const segmentos = [
+      'agencia-de-marketing',
+      'agencia-de-live-marketing',
+      'agencia-de-publicidade',
+      'agencia-de-conteudo-digital',
+      'agencia-de-ativacao-de-marca',
+      'agencia-de-trade-marketing',
+      'organizador-de-feiras-e-congressos',
+      'organizador-de-festivais-e-shows'
+    ];
 
-    return routes
+    const segmentoRoutes = segmentos.map(slug => ({
+        url: `${baseUrl}/segmentos/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.7,
+    }));
+
+    return [...routes, ...segmentoRoutes];
 }

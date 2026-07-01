@@ -22,7 +22,7 @@ export default function Problemas() {
   ];
 
   return (
-    <section className="problemas w-full relative overflow-hidden py-16 md:py-24 bg-background">
+    <section className="problemas w-full relative overflow-hidden py-16 md:py-12 bg-background">
       <div className="mx-auto w-full max-w-7xl px-4 md:px-6 lg:px-8">
         {/* Box centralizado com a imagem e fundo escuro */}
         <div className=" relative w-full overflow-hidden bg-secondary-900 text-secondary-50 px-8 py-12 md:p-16 lg:px-24 lg:py-20 rounded-none">
